@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Покана за 30-ти Рожден Ден</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+}
+
+/* Dark overlay */
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: 0;
+}
+
+/* Letter */
+.letter {
+    position: relative;
+    width: 380px;
+    min-height: 260px;
+    background: #fffaf0;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.letter h2 {
+    color: #5a3e36;
+}
+
+/* Wax Seal */
+.seal {
+    position: absolute;
+    bottom: -25px;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, #b71c1c, #7f0000);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gold;
+    font-weight: bold;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.seal:hover {
+    transform: scale(1.1);
+}
+
+/* Invitation Text (hidden initially) */
+.invitation-text {
+    display: none;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 420px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Avatar bow animation */
+.avatar {
+    font-size: 70px;
+    margin-bottom: 15px;
+    display: inline-block;
+    animation: bow 2s infinite ease-in-out;
+}
+
+@keyframes bow {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(20deg); }
+}
+
+.close-btn {
+    margin-top: 20px;
+    padding: 8px 15px;
+    background: #7f0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="letter">
+    <div id="closedLetter">
+        <h2>Специална Покана</h2>
+        <p>Натиснете печата, за да отворите</p>
+    </div>
+
+    <div class="seal" id="seal" onclick="openLetter()">30</div>
+
+    <div class="invitation-text" id="invitationText">
+        <h2>Семейство Христови,</h2>
+        <p>
+            С уважение и обич Ви каня да отпразнуваме заедно<br><br>
+            моя 30-ти Рожден Ден 🎉<br><br>
+            Вашето присъствие ще направи този ден още по-специален и незабравим!
+        </p>
+
+        <p><strong>
+            📅 [Дата]<br>
+            🕒 [Час]<br>
+            📍 [Място]
+        </strong></p>
+    </div>
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <div class="avatar">🙇‍♂️</div>
+        <p>Очаквам Ви с нетърпение!</p>
+        <button class="close-btn" onclick="closeInvitation()">Затвори</button>
+    </div>
+</div>
+
+<script>
+function openLetter() {
+    document.getElementById("seal").style.display = "none";
+    document.getElementById("closedLetter").style.display = "none";
+    document.getElementById("invitationText").style.display = "block";
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closeInvitation() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
